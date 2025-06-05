@@ -14,8 +14,7 @@ export default function Footer() {
           <div>{siteMetadata.author}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
         </div>
-        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
-        </div>
+        <div className="mb-8 text-sm text-gray-500 dark:text-gray-400"></div>
       </div>
     </footer>
   )

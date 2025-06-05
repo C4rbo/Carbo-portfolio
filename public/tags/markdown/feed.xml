@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Carbo Blog</title>
+      <link>https://c4rbo.vercel.app//blog</link>
+      <description>I’m Carbo, Italian Software Developer and Cybersecurity enthusiast</description>
+      <language>en-us</language>
+      <managingEditor>address@yoursite.com (Carbo)</managingEditor>
+      <webMaster>address@yoursite.com (Carbo)</webMaster>
+      <lastBuildDate>Tue, 08 Mar 2016 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://c4rbo.vercel.app//tags/markdown/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://c4rbo.vercel.app//blog/code-sample</guid>
+    <title>Sample .md file</title>
+    <link>https://c4rbo.vercel.app//blog/code-sample</link>
+    <description>Example of a markdown file with code blocks and syntax highlighting</description>
+    <pubDate>Tue, 08 Mar 2016 00:00:00 GMT</pubDate>
+    <author>address@yoursite.com (Carbo)</author>
+    <category>markdown</category><category>code</category><category>features</category>
+  </item>
+
+    </channel>
+  </rss>
