@@ -1,5 +1,4 @@
 import {
-  Mail,
   Github,
   Facebook,
   Youtube,
@@ -11,10 +10,10 @@ import {
   Instagram,
   Medium,
   Bluesky,
+  Discord,
 } from './icons'
 
 const components = {
-  mail: Mail,
   github: Github,
   facebook: Facebook,
   youtube: Youtube,
@@ -26,6 +25,7 @@ const components = {
   instagram: Instagram,
   medium: Medium,
   bluesky: Bluesky,
+  discord: Discord,
 }
 
 type SocialIconProps = {
@@ -37,7 +37,7 @@ type SocialIconProps = {
 const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
   if (
     !href ||
-    (kind === 'mail' && !/^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(href))
+    (kind === 'x' && !/^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(href))
   )
     return null
 
