@@ -2,6 +2,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
+import Image from 'next/image'
 
 const MAX_DISPLAY = 5
 
@@ -10,6 +11,15 @@ export default function Home({ posts }) {
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+          <div className="mt-8 flex justify-center">
+            <Image
+              src="/static/images/avatar.png"
+              alt="Profilo"
+              width={180}
+              height={180}
+              className="rounded-full shadow-xl"
+            />
+          </div>
           <h1 className="text-center text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
             Carbo Blog
           </h1>
