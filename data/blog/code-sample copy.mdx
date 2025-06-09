@@ -1,10 +1,21 @@
 ---
-title: Sample .md file
-date: '2016-03-08'
-tags: ['markdown', 'code', 'features']
+title: 'Test'
+date: '2025-04-01'
+tags: ['picoCTF', 'picoCTF-2025']
 draft: false
-summary: Example of a markdown file with code blocks and syntax highlighting
+summary: 'Writeups for the web challenges in PicoCTF 2025, including SSTI, RCE, and filter bypasses.'
+authors: ['default']
 ---
+
+Here you'll find writeups for how I solved the challenges from PicoCTF 2025, across all categories — from web and pwn to reverse engineering, crypto, and more.  
+Each writeup includes my thought process, techniques, and the final solution.
+
+<TOCInline
+  toc={props.toc}
+  exclude={['Bypassing Filters', 'Identifying the Template Engine', 'Exploitation']}
+/>
+
+![template-decision-tree](/static/images/pico2025/template-decision-tree.png)
 
 A sample post with markdown.
 
@@ -15,6 +26,8 @@ Sample of inline highlighting `sum = parseInt(num1) + parseInt(num2)`
 ## Code Blocks
 
 Some Javascript code
+
+> ⚠️ Attenzione: questa query è vulnerabile a SQLi!
 
 ```javascript
 var num1, num2, sum
