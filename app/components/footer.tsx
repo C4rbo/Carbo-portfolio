@@ -5,7 +5,6 @@ export default function Footer() {
     return (
         <footer className="row-start-3 py-6 border-t border-zinc-800">
             <div className="container mx-auto px-4 flex flex-col items-center gap-4">
-                {/* Social Icons */}
                 <div className="flex gap-6 items-center">
                     <a
                         href={Index.github}
@@ -36,9 +35,8 @@ export default function Footer() {
                     </a>
                 </div>
 
-                {/* Copyright */}
                 <p className="text-sm text-zinc-400">
-                    © 2024 All rights reserved to Carbo
+                    © 2025 All rights reserved to Carbo
                 </p>
             </div>
         </footer>

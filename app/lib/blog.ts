@@ -16,8 +16,6 @@ type Post = {
   coverImage: string;
 };
 
-
-
 const POSTS_PATH = path.join(process.cwd(), 'content/blog');
 
 export async function getAllPosts(): Promise<Post[]> {

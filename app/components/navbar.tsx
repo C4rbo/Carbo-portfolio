@@ -17,7 +17,7 @@ import { Fade } from '@mui/material';
 const pages = [
   { title: 'Blog', path: '/blog' },
   { title: 'Tags', path: '/tags' },
-  { title: 'About', path: '/about' },
+  // { title: 'About', path: '/about' },
 ];
 
 const modalStyle = {
@@ -42,7 +42,7 @@ const menuItemStyle = {
   cursor: 'pointer',
   opacity: 0,
   transform: 'translateY(20px)',
-  transition: 'all 0.5s ease-out',
+  transition: 'all 0.3s ease-out',
   '&:hover': {
     transform: 'scale(1.1)',
   }
@@ -153,7 +153,7 @@ export default function Navbar() {
                     color: 'white',
                     textDecoration: 'none',
                     cursor: 'pointer',
-                    fontSize: '1.5rem' 
+                    fontSize: '2.5rem' 
                   }}
                 >
                   Carbo
@@ -178,7 +178,7 @@ export default function Navbar() {
                       }
                     }}
                   >
-                    <CiMenuBurger size={24} /> 
+                    <CiMenuBurger size={34} /> 
                   </IconButton>
                 </Tooltip>
               </Box>

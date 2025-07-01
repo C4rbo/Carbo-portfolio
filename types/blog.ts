@@ -1,6 +1,5 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-// lib/blog.ts
 interface Post {
   slug: string;
   title: string;
