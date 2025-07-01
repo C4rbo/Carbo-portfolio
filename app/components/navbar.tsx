@@ -113,6 +113,7 @@ export default function Navbar() {
             <Box 
               sx={{ 
                 width: '100%', 
+                top: '50px',
                 display: 'flex', 
                 alignItems: 'center',
                 position: 'relative'
@@ -127,14 +128,14 @@ export default function Navbar() {
                 }}
               >
                 <Typography
-                  variant="h6"
+                  variant="h4"
                   noWrap
                   component="div"
                   onClick={() => router.push('/')}
                   sx={{
                     fontFamily: 'var(--font-geist-mono)',
                     fontWeight: 700,
-                    letterSpacing: '.3rem',
+                    letterSpacing: '.10rem',
                     color: 'inherit',
                     textDecoration: 'none',
                     cursor: 'pointer'
@@ -147,6 +148,7 @@ export default function Navbar() {
               <Box 
                 sx={{ 
                   marginLeft: 'auto',
+                  right: '150px',
                   position: 'relative',
                   zIndex: 2
                 }}
@@ -159,7 +161,7 @@ export default function Navbar() {
                       padding: '8px'
                     }}
                   >
-                    <CiMenuBurger size={24} />
+                    <CiMenuBurger size={30} />
                   </IconButton>
                 </Tooltip>
               </Box>
