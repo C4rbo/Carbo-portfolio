@@ -1,98 +1,53 @@
-'use server'
+import { getPostsByTag } from '../../lib/blog';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
-import fs from 'node:fs';
-import path from 'node:path';
-import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-
-interface Post {
-  slug: string;
-  title: string;
-  date: string;
-  tags: string[];
-  description: string;
-  coverImage: string;
-  content: MDXRemoteSerializeResult;
+interface TagPageProps {
+  params: { tag: string };
 }
 
-interface RawPost extends Omit<Post, 'content'> {
-  content: string;
-}
+export default async function TagPage({ params }: TagPageProps) {
+  const { tag } = params;
 
-const POSTS_PATH = path.join(process.cwd(), 'content/blog');
-
-export async function getAllPosts(): Promise<RawPost[]> {
-  if (!fs.existsSync(POSTS_PATH)) {
-    console.warn('La cartella blog non esiste ancora');
-    return [];
+  if (!tag) {
+    notFound();
   }
 
-  const files = fs.readdirSync(POSTS_PATH);
-  
-  const posts = files
-    .filter((file) => file.endsWith('.mdx'))
-    .map((file) => {
-      const filePath = path.join(POSTS_PATH, file);
-      const fileContent = fs.readFileSync(filePath, 'utf8');
-      const { data, content } = matter(fileContent);
-      
-      return {
-        slug: file.replace('.mdx', ''),
-        title: data.title,
-        date: data.date,
-        tags: data.tags || [],
-        description: data.description,
-        coverImage: data.coverImage || '/images/default-cover.jpg',
-        content
-      };
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-  return posts;
-}
-
-export async function getRecentPosts(count: number = 6): Promise<RawPost[]> {
-  const posts = await getAllPosts();
-  return posts.slice(0, count);
-}
-
-export async function getAllTags(): Promise<string[]> {
-  const posts = await getAllPosts();
-  const tags = new Set(posts.flatMap(post => post.tags));
-  return Array.from(tags);
-}
-
-export async function getPostsByTag(tag: string): Promise<RawPost[]> {
-  const posts = await getAllPosts();
-  return posts.filter(post => post.tags.includes(tag));
-}
-
-export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    const filePath = path.join(POSTS_PATH, `${slug}.mdx`);
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    
-    const { data, content } = matter(fileContent);
-    
-    const mdxSource = await serialize(content, {
-      parseFrontmatter: true,
-      mdxOptions: {
-        development: process.env.NODE_ENV === 'development',
-      },
-    });
+    const posts = await getPostsByTag(tag);
 
-    return {
-      slug,
-      title: data.title,
-      date: data.date,
-      tags: data.tags || [],
-      description: data.description,
-      content: mdxSource,
-      coverImage: data.coverImage || '/images/default-cover.jpg'
-    };
+    if (!posts.length) {
+      notFound();
+    }
+
+    return (
+      <div className="max-w-[800px] mx-auto px-4">
+        <h1 className="text-3xl font-bold mb-8">Posts tagged with #{tag}</h1>
+        
+        <div className="space-y-6">
+          {posts.map((post) => (
+            <article key={post.slug} className="border-b border-zinc-800 pb-6">
+              <Link href={`/blog/${post.slug}`}>
+                <h2 className="text-xl font-semibold hover:text-blue-400 transition-colors">
+                  {post.title}
+                </h2>
+              </Link>
+              <div className="flex gap-4 text-sm text-zinc-400 mt-2">
+                <time>{post.date}</time>
+                <div className="flex gap-2">
+                  {post.tags?.map((t: string) => (
+                    <span key={t}>#{t}</span>
+                  ))}
+                </div>
+              </div>
+              <p className="text-zinc-400 mt-2">{post.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    );
   } catch (error) {
-    console.error(`Error loading post ${slug}:`, error);
-    return null;
+    console.error('Error rendering tag page:', error);
+    notFound();
   }
 }
