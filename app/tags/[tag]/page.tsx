@@ -3,11 +3,11 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
 interface TagPageProps {
-  params: { tag: string };
+  params: Promise<{ tag: string }>;
 }
 
 export default async function TagPage({ params }: TagPageProps) {
-  const { tag } = params;
+  const { tag } = await params;
 
   if (!tag) {
     notFound();
