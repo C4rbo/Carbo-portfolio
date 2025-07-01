@@ -1,57 +1,45 @@
+
+import { getAllTags } from '../lib/blog';
 import Link from 'next/link';
-import { getAllTags, getPostsByTag } from '../lib/blog';
-import { PostCard } from '../components/blog/PostCard';
 
-export default async function TagsPage({
-  searchParams,
-}: {
-  searchParams: { tag?: string }
-}) {
-  const allTags = await getAllTags();
-  const selectedTag = searchParams.tag;
-  const posts = selectedTag ? await getPostsByTag(selectedTag) : [];
+interface TagsPageProps {
+  searchParams: Promise<{ tag?: string }>;
+}
 
-  return (
-    <div className="max-w-[900px] mx-auto">
-      <header className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">Tags</h1>
-        <p className="text-zinc-400 mb-8">
-          {selectedTag ? `Showing posts tagged with "${selectedTag}"` : 'Select a tag to filter posts'}
-        </p>
+export default async function TagsPage({ searchParams }: TagsPageProps) {
+  try {
+    const params = await searchParams;
+    const tags = await getAllTags();
+
+    const tagsList = tags.map(tag => ({
+      name: tag,
+      count: 1 
+    }));
+
+    return (
+      <div className="max-w-[800px] mx-auto px-4">
+        <h1 className="text-3xl font-bold mb-8">All Tags</h1>
         
-        <div className="flex gap-4 flex-wrap mb-12">
-          {allTags.map(async tag => (
+        <div className="flex flex-wrap gap-4">
+          {tagsList.map((tag) => (
             <Link
-              key={tag}
-              href={`/tags?tag=${tag}`}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                selectedTag === tag 
-                  ? 'bg-zinc-700 text-white' 
-                  : 'bg-zinc-900 text-zinc-400 hover:bg-zinc-800 hover:text-white'
-              }`}
+              key={tag.name}
+              href={`/tags/${tag.name}`}
+              className="px-4 py-2 bg-zinc-800/50 rounded-lg hover:bg-zinc-700/50 transition-colors"
             >
-              {tag}
-              <span className="ml-2 text-zinc-500">
-                ({(await getPostsByTag(tag)).length})
-              </span>
+              <span className="text-zinc-400">#{tag.name}</span>
+              <span className="ml-2 text-sm text-zinc-500">({tag.count})</span>
             </Link>
           ))}
         </div>
-      </header>
-
-      {selectedTag && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map(post => (
-            <PostCard key={post.slug} {...post} />
-          ))}
-        </div>
-      )}
-
-      {selectedTag && posts.length === 0 && (
-        <div className="text-center text-zinc-400">
-          <p>No posts found with tag "{selectedTag}"</p>
-        </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  } catch (error) {
+    console.error('Error rendering tags page:', error);
+    return (
+      <div className="max-w-[800px] mx-auto px-4">
+        <h1 className="text-3xl font-bold mb-8">No tags found</h1>
+      </div>
+    );
+  }
 }

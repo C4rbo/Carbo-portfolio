@@ -1,9 +1,8 @@
-
 import { getPostBySlug } from '../../lib/blog';
 import { MdxContent } from '@/app/components/mdx/MdxContent';
 import { notFound } from 'next/navigation';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Suspense } from 'react';
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 interface PostPageProps {
   params: Promise<{ slug: string }>;
@@ -38,7 +37,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </header>
 
         <Suspense fallback={<div>Loading...</div>}>
-          <MdxContent source={post.content} />
+          <MdxContent source={post.content as MDXRemoteSerializeResult} />
         </Suspense>
       </div>
     );
