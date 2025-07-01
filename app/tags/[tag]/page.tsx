@@ -1,17 +1,58 @@
 import { getPostsByTag } from '../../lib/blog';
-import { PostCard } from '../../components/blog/PostCard';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
-export default async function TagPage({ params }: { params: { tag: string } }) {
-  const posts = getPostsByTag(params.tag);
+interface TagPageProps {
+  params: Promise<{ tag: string }>;  
+}
 
-  return (
-    <div className="flex flex-col gap-8">
-      <h1 className="text-4xl font-bold">Posts tagged "{params.tag}"</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {(await posts).map(post => (
-          <PostCard key={post.slug} {...post} />
-        ))}
+export default async function TagPage({ params }: TagPageProps) {
+  const { tag } = await params;
+
+  if (!tag) {
+    notFound();
+  }
+
+  try {
+    const posts = await getPostsByTag(tag);
+
+    if (!posts.length) {
+      notFound();
+    }
+
+    return (
+      <div className="max-w-[800px] mx-auto px-4">
+        <div className="flex justify-between text-sm font-mono text-zinc-400 mb-8 pb-2 border-b border-zinc-800">
+          <span>2025-07-01 18:09:14</span>
+          <span>Carbo37</span>
+        </div>
+
+        <h1 className="text-3xl font-bold mb-8">Posts tagged with #{tag}</h1>
+        
+        <div className="space-y-6">
+          {posts.map((post) => (
+            <article key={post.slug} className="border-b border-zinc-800 pb-6">
+              <Link href={`/blog/${post.slug}`}>
+                <h2 className="text-xl font-semibold hover:text-blue-400 transition-colors">
+                  {post.title}
+                </h2>
+              </Link>
+              <div className="flex gap-4 text-sm text-zinc-400 mt-2">
+                <time>{post.date}</time>
+                <div className="flex gap-2">
+                  {post.tags?.map((t: string) => (
+                    <span key={t}>#{t}</span>
+                  ))}
+                </div>
+              </div>
+              <p className="text-zinc-400 mt-2">{post.description}</p>
+            </article>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error('Error rendering tag page:', error);
+    notFound();
+  }
 }

@@ -1,8 +1,8 @@
 
 const Footer = {
-  discord: "https://discord.gg/tuolink",
-  github: "https://github.com/tuo-progetto",
-  linkedin: "https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
+  discord: "https://discord.com/users/315450580342538251",
+  github: "https://github.com/C4rbo",
+  linkedin: "https://www.linkedin.com/in/alessio-carbonara/",
 };
 
 export default Footer;
