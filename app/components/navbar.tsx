@@ -16,8 +16,8 @@ import { Fade } from '@mui/material';
 
 const pages = [
   { title: 'Blog', path: '/blog' },
-  { title: 'Account', path: '/account' },
-  { title: 'Dashboard', path: '/dashboard' },
+  { title: 'Tags', path: '/tags' },
+  { title: 'About', path: '/about' },
 ];
 
 const modalStyle = {
@@ -107,13 +107,27 @@ export default function Navbar() {
 
   return (
     <>
-      <AppBar position="fixed">
+      <Box/> 
+      <AppBar 
+        position="static"
+        sx={{ 
+          paddingTop: 5,
+          backgroundColor: 'transparent', 
+          boxShadow: 'none', 
+          backgroundImage: 'linear-gradient(to bottom, rgba(0,0,0,0.5), transparent)',
+        }}
+      >
         <Container maxWidth="xl">
-          <Toolbar disableGutters>
+          <Toolbar 
+            disableGutters 
+            sx={{ 
+              minHeight: '50px', 
+              py: 0.5 
+            }}
+          >
             <Box 
               sx={{ 
                 width: '100%', 
-                top: '50px',
                 display: 'flex', 
                 alignItems: 'center',
                 position: 'relative'
@@ -136,9 +150,10 @@ export default function Navbar() {
                     fontFamily: 'var(--font-geist-mono)',
                     fontWeight: 700,
                     letterSpacing: '.10rem',
-                    color: 'inherit',
+                    color: 'white',
                     textDecoration: 'none',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontSize: '1.5rem' 
                   }}
                 >
                   Carbo
@@ -148,7 +163,6 @@ export default function Navbar() {
               <Box 
                 sx={{ 
                   marginLeft: 'auto',
-                  right: '150px',
                   position: 'relative',
                   zIndex: 2
                 }}
@@ -158,10 +172,13 @@ export default function Navbar() {
                     onClick={handleOpenMenu}
                     sx={{ 
                       color: 'white',
-                      padding: '8px'
+                      padding: '4px', 
+                      '&:hover': {
+                        backgroundColor: 'rgba(255,255,255,0.1)'
+                      }
                     }}
                   >
-                    <CiMenuBurger size={30} />
+                    <CiMenuBurger size={24} /> 
                   </IconButton>
                 </Tooltip>
               </Box>

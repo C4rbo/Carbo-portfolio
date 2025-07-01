@@ -1,33 +1,46 @@
-//https://react-icons.github.io/react-icons/
-import { FaGithub, FaDiscord, FaLinkedin  } from "react-icons/fa";
-import Index from "./index"
-export default function Footer(){
+import { FaGithub, FaDiscord, FaLinkedin } from "react-icons/fa";
+import Index from "./index";
+
+export default function Footer() {
     return (
-        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href={Index.github}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        <FaGithub size={32}/>
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        <FaLinkedin size={32}/>
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        <FaDiscord size={32}/>
-        </a>
-      </footer>
-    )
+        <footer className="row-start-3 py-6 border-t border-zinc-800">
+            <div className="container mx-auto px-4 flex flex-col items-center gap-4">
+                {/* Social Icons */}
+                <div className="flex gap-6 items-center">
+                    <a
+                        href={Index.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-zinc-400 hover:text-zinc-100 transition-colors"
+                        aria-label="GitHub"
+                    >
+                        <FaGithub size={24} />
+                    </a>
+                    <a
+                        href={Index.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-zinc-400 hover:text-zinc-100 transition-colors"
+                        aria-label="LinkedIn"
+                    >
+                        <FaLinkedin size={24} />
+                    </a>
+                    <a
+                        href={Index.discord}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-zinc-400 hover:text-zinc-100 transition-colors"
+                        aria-label="Discord"
+                    >
+                        <FaDiscord size={24} />
+                    </a>
+                </div>
+
+                {/* Copyright */}
+                <p className="text-sm text-zinc-400">
+                    © 2024 All rights reserved to Carbo
+                </p>
+            </div>
+        </footer>
+    );
 }
