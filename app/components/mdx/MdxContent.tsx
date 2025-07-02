@@ -57,7 +57,7 @@ const components = {
           customStyle={{
             margin: 0,
             borderRadius: '8px',
-            padding: '3rem 1rem 1rem 1rem',
+            padding: '4rem 1rem 1rem 1rem',
             backgroundColor: 'rgb(24 24 27)',
           }}
           wrapLongLines={true}

@@ -11,7 +11,7 @@ export default async function BlogPage() {
         <header className="mb-12">
           <h1 className="text-4xl font-bold mb-4">Blog</h1>
           <p className="text-zinc-400">
-            Una collezione di writeup e tutorial su hacking e sicurezza informatica.
+A collection of writeups and tutorials on hacking and cybersecurity.
           </p>
         </header>
 
