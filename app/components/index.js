@@ -5,4 +5,10 @@ const Footer = {
   linkedin: "https://www.linkedin.com/in/alessio-carbonara/",
 };
 
-export default Footer;
+const pages = [
+  { title: 'Blog', path: '/blog' },
+  { title: 'Tags', path: '/tags' },
+  // { title: 'About', path: '/about' },
+];
+
+export default {Footer, pages};

@@ -7,7 +7,7 @@ export default function Footer() {
             <div className="container mx-auto px-4 flex flex-col items-center gap-4">
                 <div className="flex gap-6 items-center">
                     <a
-                        href={Index.github}
+                        href={Index.Footer.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-zinc-400 hover:text-zinc-100 transition-colors"
@@ -16,7 +16,7 @@ export default function Footer() {
                         <FaGithub size={24} />
                     </a>
                     <a
-                        href={Index.linkedin}
+                        href={Index.Footer.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-zinc-400 hover:text-zinc-100 transition-colors"
@@ -25,7 +25,7 @@ export default function Footer() {
                         <FaLinkedin size={24} />
                     </a>
                     <a
-                        href={Index.discord}
+                        href={Index.Footer.discord}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-zinc-400 hover:text-zinc-100 transition-colors"

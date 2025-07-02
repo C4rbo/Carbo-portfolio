@@ -1,5 +1,5 @@
 "use client"
-
+import Index from "./index";
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,12 +13,6 @@ import { IoClose } from "react-icons/io5";
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/navigation';
 import { Fade } from '@mui/material';
-
-const pages = [
-  { title: 'Blog', path: '/blog' },
-  { title: 'Tags', path: '/tags' },
-  // { title: 'About', path: '/about' },
-];
 
 const modalStyle = {
   position: 'fixed' as const,
@@ -211,7 +205,7 @@ export default function Navbar() {
               <IoClose size={32} />
             </IconButton>
 
-            {pages.map((page, index) => (
+            {Index.pages.map((page, index) => (
               <Typography
                 key={page.title}
                 onClick={() => handleMenuClick(page.path)}
